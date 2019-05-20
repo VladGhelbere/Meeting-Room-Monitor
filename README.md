@@ -16,7 +16,7 @@ The tools we used to build our website and back-end are all Amazon WS tools:
 - Certificate Managaer
 - CloudFront
 
-For our scripts, we used Python 3.6, our Lambda functions are
+For our Raspberry script, we used Python 3, our Lambda functions are
 written in Node.js 8.10 and most of our website scripts are in JavaScript. 
 
 # Project's Purpose
