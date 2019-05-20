@@ -1,3 +1,6 @@
+#USAGE: python3 camera_algorithm.py --room "[room name]"
+
+# Importing libraries
 import cv2
 import imutils
 import requests
