@@ -1,4 +1,5 @@
-Authors: Ghelbere Vlad, Nistor Andrei, Lazea Iosua, Totan Gabriel
+Created By: Ghelbere Vlad, Nistor Andrei, Lazea Iosua, Totan Gabriel
+Note: Some of the Amazon configurations like the API Gateway and a lot of JS & CSS from the front-end is missing from this repository, serving only as a guide with samples.
 
 # Meeting Room Monitor
 
