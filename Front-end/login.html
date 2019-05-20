@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="static/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/css/style.css" rel="stylesheet">
+  <link href="static/css/error-pages.css" rel="stylesheet">
+  <link href="static/css/spinners.css" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="16x16" href="static/img/favicon.png">
+  <title>CRM | Room</title>
+  <script src="https://d5cxcejge1ybj.cloudfront.net/20180912132350/js/jquery-3.2.1.min.js"></script>
+  <script src="static/js/aws-cognito-sdk.min.js"></script>
+  <script src="static/js/amazon-cognito-identity.min.js"></script>
+  <script src="static/js/config.js"></script>
+  <script src="static/js/cognito-auth.js"></script>
+
+</head>
+
+<body >
+  <div class="preloader">
+      <div class="loader">
+          <div class="loader__figure"></div>
+          <p class="loader__label">Continental Room Monitor</p>
+      </div>
+  </div>
+    <section>
+      <h1 style="text-align:center; margin-top:5%">Continental Room Monitor</h1>
+          <div style="background:#1b2a47; width: 350px;padding:25px; margin:5% auto; border-radius:15px;">
+            <form id="signinForm">
+              <h4 style="text-align:center;" id="textbox"> Enter username and password </h4>
+              <input required value name="username" class="input_login" placeholder="username" id="usernameInputSignin" name="username" autocomplete="off" type="text"></input>
+              <input required value name="password" class="input_login" placeholder="password" id="passwordInputSignin" name="password" autocomplete="off" type="password"></input>
+              <button class="btn btn-success button_login" type="Submit">Log in</button>
+            </form>
+
+          </div>
+      <footer class="footer text-center">Copyright © 2019 Continental Room Monitor All rights reserved.</footer>
+    </section>
+    <script src="static/js/bootstrap/js/popper.min.js"></script>
+    <script src="static/js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="static/js/waves.js"></script>
+    <script src="static/js/sidebarmenu.js"></script>
+    <script src="static/js/custom.min.js"></script>
+
+</body>
+</html>

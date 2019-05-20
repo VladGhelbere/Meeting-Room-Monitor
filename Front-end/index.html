@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <noscript>
+   Your browser does not support JavaScript!
+  </noscript>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="static/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/css/style.css" rel="stylesheet">
+  <link href="static/css/error-pages.css" rel="stylesheet">
+  <link href="static/css/spinners.css" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="16x16" href="static/img/favicon.png">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <script src="static/js/jquery/jquery.min.js"></script>
+
+
+
+  <script src="static/js/aws-cognito-sdk.min.js"></script>
+  <script src="static/js/amazon-cognito-identity.min.js"></script>
+  <script src="static/js/config.js"></script>
+  <script src="static/js/cognito-auth.js"></script>
+  <script src="static/js/logout_nouser.js"></script>
+
+
+
+
+  <title>CRM | Dashboard</title>
+  <script>
+      function update_rooms(){
+          $.get("https://7hoyag70j9.execute-api.eu-central-1.amazonaws.com/mainStage/returnvalue",function(data){
+            $("#cardhold").html('');
+            $("#cardhold").html('<h4>Rooms</h4>');
+            for (i=0; i<data.length;i++){
+              if(data[i].STATE == "Online"){
+                badge = '<i class="circle circle_succesful bg-success"></i>'
+              }
+              else{
+                badge = '<i class="circle circle_succesful bg-danger"></i>'
+              }
+                $("#cardhold").append(`
+                    <div style="background:#1b2a47; display:inline-block; border-radius:10px; padding:25px; margin:5px;">
+                              <p>Room: ${data[i].NAME} </p>
+                              <p>Status: ${data[i].STATE} ${badge}</p>
+                              <p>Availability: ${data[i].STATUS}</p>
+                            </div>`);
+            }
+          });
+      }
+  </script>
+</head>
+
+<body class="fix-header fix-sidebar card-no-border">
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">Continental Room Monitor</p>
+        </div>
+    </div>
+    <div id="main-wrapper">
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <div class="navbar-header">
+                    <a class="brandlogos" href="index.html">
+                        <b style="padding-left:10px;">
+                            <img src="static/img/logo-icon.png" alt="homepage" class="dark-logo" />
+                        </b>
+                        <span style="padding-left:10px;">
+                            <img src="static/img/logo-text.png" alt="homepage" class="dark-logo" />
+                        </span>
+                    </a>
+                </div>
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i style="color:white;" class="fas fa-bars"></i></a> </li>
+                    </ul>
+
+                </div>
+            </nav>
+        </header>
+        <aside class="left-sidebar">
+            <div class="scroll-sidebar">
+                <nav class="sidebar-nav">
+                  <ul id="sidebarnav">
+                      <li> <a class="waves-effect waves-dark" href="index.html" aria-expanded="false"><i class="fab fa-dashcube"></i><span class="hide-menu">Dashboard</span></a></li>
+                      <li> <a class="waves-effect waves-dark" href="logs.html" aria-expanded="false"><i class="fas fa-book"></i><span class="hide-menu">Logs</span></a></li>
+                      <li> <a class="waves-effect waves-dark" id="logOut" aria-expanded="false"><i class="fas fa-sign-out-alt"></i><span class="hide-menu">Log out</span></a></li>
+                  </ul>
+
+                </nav>
+            </div>
+        </aside>
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h3>Dashboard</h3>
+                        <h5>Welcome !</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+
+                            <div id="cardhold" class="card-body" style="display:inline-block;">
+                              <script>
+                                 update_rooms();
+                              </script>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <footer class="footer"> Copyright © 2019 Continental Room Monitor All rights reserved. </footer>
+        </div>
+    </div>
+
+    <script src="static/js/bootstrap/js/popper.min.js"></script>
+    <script src="static/js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="static/js/waves.js"></script>
+    <script src="static/js/sidebarmenu.js"></script>
+    <script src="static/js/custom.min.js"></script>
+    <script>
+       setInterval(update_rooms, 5000);
+    </script>
+
+</body>
+</html>
