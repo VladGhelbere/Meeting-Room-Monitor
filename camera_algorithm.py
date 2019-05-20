@@ -4,10 +4,8 @@
 import cv2
 import imutils
 import requests
-from time import sleep
+from time import sleep, gmtime, strftime
 import argparse
-from time import gmtime, strftime
-
 from datetime import datetime
 
 # Read video input from the camera
@@ -45,6 +43,7 @@ try:
             minSize=(30, 30)
         )
 
+        # Update availability when persons are detected
         if (len(bodies) > 0):
             availability = "Occupied"
             if start_hour == "":
@@ -53,15 +52,17 @@ try:
             availability = "Unoccupied"
             end_hour = datetime.now().strftime("%H:%M:%S")
 
+        # Figure out when to update room status
         if (lastA != availability):
             lastA = availability
             # print("Found {0} persons!".format(len(bodies)))
             # print ("Sending..")
-            requests.post('https://7hoyag70j9.execute-api.eu-central-1.amazonaws.com/mainStage/sendvalues', json={"name": roomName, "state":"Online", "availability":availability})
+            requests.post('[API Gateway Link]', json={"name": roomName, "state":"Online", "availability":availability})
         
+        # Figure out when to send logs
         if start_hour != "" and end_hour != "" and availability == "Unoccupied":
             date = strftime("%A %d %B %Y")
-            requests.post('https://7hoyag70j9.execute-api.eu-central-1.amazonaws.com/mainStage/sendlogs', json={"room": roomName , "date": date,"trigger_hour": start_hour, "trigger_end_hour": end_hour, "number_of_persons": len(bodies)})
+            requests.post('[API Gateway Link]', json={"room": roomName , "date": date,"trigger_hour": start_hour, "trigger_end_hour": end_hour, "number_of_persons": len(bodies)})
             print (start_hour + " | " + end_hour)
             start_hour = ""
             end_hour = ""
@@ -75,10 +76,12 @@ try:
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
+        # Add some sleep so you don't fry your Raspberry
         sleep(0.5)
 
+# If the code stops for some reason, update Raspberry status on the site and also change availability to "Unknown"
 except:
-    requests.post('https://7hoyag70j9.execute-api.eu-central-1.amazonaws.com/mainStage/sendvalues', json={"name": roomName, "state":"Offline", "availability":"Unknown"})
-    # When everything done, release the capture
+    requests.post('[API Gateway Link]', json={"name": roomName, "state":"Offline", "availability":"Unknown"})
+    # When everything's done, release the capture
     cap.release()
     cv2.destroyAllWindows()
