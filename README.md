@@ -8,9 +8,9 @@ Meeting rooms are sometimes booked in advance but not used and not released. Thi
 # Tools
 
 The tools we used to build our website and back-end are all Amazon WS tools:
-- AWS Lambda
-- Amazon API Gateway
-- DynmamoDB
+- API Gateway
+- Lambda
+- DynamoDB
 - Cognito
 - S3
 - Route 53
